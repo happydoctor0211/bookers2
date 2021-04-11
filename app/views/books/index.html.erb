@@ -1,0 +1,18 @@
+<% @books.each do |book| %>
+<table>
+  <tr>
+    <th></th>
+    <th>Title</th>
+    <th>Opinion</th>
+  </tr>
+  <tr>
+    <td>投稿ユーザー画像</td>
+    <td>
+      <%= link_to book_path(book.id) do %>
+       <%= book.title %>
+      <% end %>
+    </td>
+    <td><%= book.body %></td>
+  </tr>
+</table>
+<% end %>
