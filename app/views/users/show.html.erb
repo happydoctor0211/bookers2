@@ -1,11 +1,10 @@
- <h1>User info</h1>
- <p>投稿ユーザー画像</p>
+<h1>User info</h1>
  <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
  <p>Name <%= @user.name %></p>
  <p>Introduction <%= @user.introduction %></p>
  <% if @user.id == current_user.id %>
   <p><%= link_to "編集", edit_user_path(@user) %></p>
-  <% else %>
+ <% else %>
   <p><%= link_to "編集", user_path(current_user.id) %></p>
  <% end %>
 
@@ -18,26 +17,23 @@
  <%= f.submit 'Create Book' %>
 <% end %>
 
+<h1>Book detail</h1>
+
 <table>
   <tr>
-   <th></th>
+    <th></th>
     <th>Title</th>
     <th>Opinion</th>
-    <th></th>
   </tr>
+  <% @books.each do |book| %>
   <tr>
-   <td>
-    <%= link_to user_path(@book.user_id) do %>
-     投稿ユーザー画像
-     <%= @user.name %>
-     <% end %>
-   </td>
-   <td><%= @book.title %></td>
-   <td><%= @book.body %></td>
-   <td>
-     <% if @user.id == current_user.id %>
-      <p><%= link_to "削除", book_path(@book),method: :delete %>  編集</p>
-     <% end %>
-   </td>
+    <td>投稿ユーザー画像</td>
+    <td>
+      <%= link_to book_path(book.id) do %>
+       <%= book.title %>
+      <% end %>
+    </td>
+    <td><%= book.body %></td>
   </tr>
+  <% end %>
 </table>
