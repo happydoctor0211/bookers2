@@ -1,9 +1,10 @@
 class HomesController < ApplicationController
 
   def top
+    @user = current_user
   end
 
-  def new
+  def about
   end
 
 end
